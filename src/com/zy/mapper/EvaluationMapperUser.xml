@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.mapper.EvaluationMapperUser" >
+	<select id="selectAll" resultType="com.zy.po.EvaluationUser">
+		SELECT `user`.username username,food.fName fname,evaluation.info,evaluation.score
+		FROM `user`,food,evaluation
+ 		WHERE evaluation.foodid=food.id AND evaluation.userid=`user`.id 
+	</select>
+</mapper>

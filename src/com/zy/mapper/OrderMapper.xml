@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.zy.po.Order" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="tableid" property="tableid" jdbcType="INTEGER" />
+    <result column="ordertime" property="ordertime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="cookno" property="cookno" jdbcType="VARCHAR" />
+    <result column="waiterno" property="waiterno" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, userid, tableid, ordertime, state, price, cookno, waiterno
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zy.po.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `order`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from `order`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from `order`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zy.po.OrderExample" >
+    delete from `order`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zy.po.Order" >
+    insert into order (id, userid, tableid, 
+      ordertime, state, price, 
+      cookno, waiterno)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{tableid,jdbcType=INTEGER}, 
+      #{ordertime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, 
+      #{cookno,jdbcType=VARCHAR}, #{waiterno,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zy.po.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="tableid != null" >
+        tableid,
+      </if>
+      <if test="ordertime != null" >
+        ordertime,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="cookno != null" >
+        cookno,
+      </if>
+      <if test="waiterno != null" >
+        waiterno,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="tableid != null" >
+        #{tableid,jdbcType=INTEGER},
+      </if>
+      <if test="ordertime != null" >
+        #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="cookno != null" >
+        #{cookno,jdbcType=VARCHAR},
+      </if>
+      <if test="waiterno != null" >
+        #{waiterno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zy.po.OrderExample" resultType="java.lang.Integer" >
+    select count(*) from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `order`
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.tableid != null" >
+        tableid = #{record.tableid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ordertime != null" >
+        ordertime = #{record.ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.cookno != null" >
+        cookno = #{record.cookno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.waiterno != null" >
+        waiterno = #{record.waiterno,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `order`
+    set id = #{record.id,jdbcType=INTEGER},
+      userid = #{record.userid,jdbcType=INTEGER},
+      tableid = #{record.tableid,jdbcType=INTEGER},
+      ordertime = #{record.ordertime,jdbcType=TIMESTAMP},
+      state = #{record.state,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DOUBLE},
+      cookno = #{record.cookno,jdbcType=VARCHAR},
+      waiterno = #{record.waiterno,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zy.po.Order" >
+    update order
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="tableid != null" >
+        tableid = #{tableid,jdbcType=INTEGER},
+      </if>
+      <if test="ordertime != null" >
+        ordertime = #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="cookno != null" >
+        cookno = #{cookno,jdbcType=VARCHAR},
+      </if>
+      <if test="waiterno != null" >
+        waiterno = #{waiterno,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zy.po.Order" >
+    update order
+    set userid = #{userid,jdbcType=INTEGER},
+      tableid = #{tableid,jdbcType=INTEGER},
+      ordertime = #{ordertime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
+      cookno = #{cookno,jdbcType=VARCHAR},
+      waiterno = #{waiterno,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

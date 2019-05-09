@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--设置启用数据库字段下划线映射到java对象的驼峰式命名属性，默认为false-->
+<settings>
+    <setting name="mapUnderscoreToCamelCase" value="true"/>
+</settings>	
+	<typeAliases>
+	
+
+	<!-- 批量定义别名
+		别名默认规则就是实体类类名采用首字母小写的规则
+		 -->
+		<package name="com.zy.po"/>
+	</typeAliases>
+	<!-- 配置分页插件
+	注意顺序，必须放在后面
+	-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <!-- 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库-->        
+            <property name="dialect" value="mysql"/>
+        </plugin>
+    </plugins>
+</configuration>

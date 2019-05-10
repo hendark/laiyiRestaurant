@@ -6,5 +6,4 @@ import com.zy.po.FoodCuisine;
 
 public interface FoodMapperCuisine {
 	public List<FoodCuisine> selectAll() throws Exception;
-
 }

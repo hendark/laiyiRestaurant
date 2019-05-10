@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zy.po.EvaluationUser;
 import com.zy.po.Food;
 import com.zy.po.FoodCuisine;
+import com.zy.service.EvaluationService;
 import com.zy.service.FoodService;
 
 @Controller
@@ -17,6 +19,8 @@ import com.zy.service.FoodService;
 public class FoodController {
 	@Autowired
 	private FoodService foodService;
+	@Autowired
+	private EvaluationService evaluationService;
 	
 	@RequestMapping("foodlist")
 	public ModelAndView foodlist(
@@ -75,5 +79,18 @@ public class FoodController {
 		mv.addObject("foodcuisines",foodcuisines);
 		mv.setViewName("employees/foodlist");
 		return mv;
+	}
+	
+	@RequestMapping("detail")
+	public ModelAndView detail(
+			int id,
+			ModelAndView mv)throws Exception{
+		Food food = foodService.selectById(id);
+		List<EvaluationUser> evaluations = evaluationService.selectAllByFoodId(id);
+		mv.addObject("evaluations", evaluations);
+		mv.addObject("food", food);
+		mv.setViewName("user/detail");
+		return mv;
+		
 	}
 }

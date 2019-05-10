@@ -6,4 +6,10 @@
 		FROM `user`,food,evaluation
  		WHERE evaluation.foodid=food.id AND evaluation.userid=`user`.id 
 	</select>
+
+	<select id="selectAllByFoodId" resultType="com.zy.po.EvaluationUser">
+		SELECT `user`.username username,food.fName fname,food.fDPrice fdprice,evaluation.info,evaluation.score
+		FROM food,`user`,evaluation
+ 		WHERE evaluation.foodid=food.id AND evaluation.userid=`user`.id AND food.id = #{id,jdbcType=INTEGER}
+	</select>
 </mapper>

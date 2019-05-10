@@ -17,4 +17,9 @@ public class EvaluationServiceImpl implements EvaluationService{
 		return evaluationMapperUser.selectAll();
 	}
 
+	public List<EvaluationUser> selectAllByFoodId(int id) throws Exception {
+		
+		return evaluationMapperUser.selectAllByFoodId(id);
+	}
+
 }

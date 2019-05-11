@@ -33,9 +33,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="shop_hd_topNav">
 			<div class="shop_hd_topNav_all">
 				<!-- Header TopNav Left -->
-				<div class="shop_hd_topNav_all_left">
-					<p>您好，欢迎来到<b><a href="/">ShopCZ商城</a></b>[<a href="">登录</a>][<a href="">注册</a>]</p>
-				</div>
+				<c:choose>
+					<c:when test="${sessionScope.user.username!=null}">
+						<div class="shop_hd_topNav_all_left">
+							<p>您好！<b><a href="#">${sessionScope.user.username}</a></b>[<a href="${pageContext.request.contextPath}/user/logout.action">退出</a>]</p>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="shop_hd_topNav_all_left">
+							<p>您好，欢迎来到<b><a href="/">来怡饭店</a></b>[<a href="${pageContext.request.contextPath}/user/userLogin.action">登录</a>][<a href="">注册</a>]</p>
+						</div>
+					</c:otherwise>	
+				</c:choose>
 				<!-- Header TopNav Left End -->
 			</div>
 			<div class="clear"></div>
@@ -77,18 +86,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div id="shop_hd_menu_all_category_hd" class="shop_hd_menu_all_category_hd">
 					<ul class="shop_hd_menu_all_category_hd_menu clearfix">
 						<!-- 单个菜单项 -->
-						<li id="cat_1" class="">
-							<h3><a href="" title="男女服装">男女服装</a></h3>
-							<div id="cat_1_menu" class="cat_menu clearfix" style="">
-								<dl class="clearfix">
-									<dt><a href="女装" href="">女装</a></dt>
-									<dd>
-										<a href="">风衣</a>
-									</dd>
-								</dl>
-                            </div>
-                        </li>
-                        <li class="more"><a href="">查看更多分类</a></li>
+						<c:forEach items="${sessionScope.cuisines}" var="c">
+							<li id="cat_1" class="">
+								<h3><a href="#">${c.cuisine}</a></h3>
+	                        </li>
+                        </c:forEach>
 					</ul>
 				</div>
 			</div>

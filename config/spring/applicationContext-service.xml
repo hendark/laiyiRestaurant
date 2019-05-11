@@ -18,5 +18,6 @@
 	<bean id="UserService" class="com.zy.service.impl.UserServiceImpl"/>
 	<bean id="EvaluationService" class="com.zy.service.impl.EvaluationServiceImpl"/>
 	<bean id="DetailsService" class="com.zy.service.impl.DetailsServiceImpl"/>
-
+	<bean id="CuisineService" class="com.zy.service.impl.CuisineServiceImpl"/>
+	<bean id="CartService" class="com.zy.service.impl.CartServiceImpl"/>
 </beans>

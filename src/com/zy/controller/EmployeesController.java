@@ -18,7 +18,7 @@ public class EmployeesController {
 	@Autowired
 	private EmployeesService EmployeesService;
 	
-	@RequestMapping("login")
+	@RequestMapping("/login")
 	public ModelAndView toindex(
 			@RequestParam("workno") String workno,
 			@RequestParam("password") String password,

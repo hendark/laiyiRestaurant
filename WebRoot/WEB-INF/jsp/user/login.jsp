@@ -30,35 +30,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<h3>用户登录</h3>
 			</div>
 			<div class="form-bd">
-				<form action="" method="POST">
+				<form action="${pageContext.request.contextPath}/user/login.action" method="POST">
 					<dl>
 						<dt>用户名</dt>
-						<dd><input type="text" name="user" class="text" /></dd>
+						<dd><input type="text" name="username" class="text" /></dd>
 					</dl>
 					<dl>
 						<dt>密&nbsp;&nbsp;&nbsp;&nbsp;码</dt>
-						<dd><input type="password" name="pwd" class="text"/></dd>
-					</dl>
-					<dl>
-						<dt>验证码</dt>
-						<dd><input type="text" name="code" class="text" size="10" style="width:58px;"> <img src="${pageContext.request.contextPath}/userjs/images/code.png" alt="" align="absmiddle" style="position:relative;top:-2px;"/> <a href="" style="color:#999;">看不清，换一张</a></dd>
+						<dd><input type="password" name="password" class="text"/></dd>
 					</dl>
 					<dl>
 						<dt>&nbsp;</dt>
-						<dd><input type="submit" value="登  录" class="submit"/> <a href="" class="forget">忘记密码?</a></dd>
+						<dd><input type="submit" value="登  录" class="submit"/> </dd>
 					</dl>
 				</form>
 				<dl>
 					<dt>&nbsp;</dt>
 					<dd> 还不是本站会员？立即 <a href="" class="register">注册</a></dd>
-				</dl>
-				<dl class="other">
-					<dt>&nbsp;</dt>
-					<dd>
-						<p>您可以用合作伙伴账号登录：</p>
-						<a href="" class="qq"></a>
-						<a href="" class="sina"></a>
-					</dd>
 				</dl>
 			</div>
 			<div class="form-ft">
@@ -70,7 +58,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<img src="${pageContext.request.contextPath}/userjs/images/left.jpg" alt="" />
 		</div>
 	</div>
-	
 	<div class="footer clear wrap1000">
 		<p> 
 			<a href="#">首页</a> |

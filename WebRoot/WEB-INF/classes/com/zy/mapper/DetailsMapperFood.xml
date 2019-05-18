@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zy.mapper.DetailsMapperFood" >
 	<select id="selectAllByOrderId" resultType="com.zy.po.DetailsFood">
-		SELECT food.fName fname,details.*
+		SELECT food.fName fname,details.*,food.fDPrice*details.num xiaoji
 		FROM food,details
 		WHERE food.id=details.foodid AND details.orderid=#{id,jdbcType=INTEGER}
 	</select>

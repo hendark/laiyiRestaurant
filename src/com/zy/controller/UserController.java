@@ -43,7 +43,7 @@ public class UserController {
 			ModelAndView mv)throws Exception{
 		User user = userService.login(username, password);
 		if(user==null){
-			mv.setViewName("redirect:/login.jsp");
+			mv.setViewName("user/login");
 		}else{
 			session.setAttribute("user", user);
 			mv.setViewName("user/index");	
@@ -60,8 +60,39 @@ public class UserController {
 		return mv;
 	}
 	
+	@RequestMapping("/myInfo")
+	public ModelAndView myinfo(
+			HttpSession session,
+			ModelAndView mv)throws Exception{
+		if(session.getAttribute("user")==null){
+			mv.setViewName("user/login");
+		}else{
+			User user = (User)session.getAttribute("user");
+			User myuser = userService.selectByid(user.getId());
+			mv.addObject("myuser", myuser);
+			mv.setViewName("user/myInfo");
+		}
+		return mv;
+	}
 	
+	@RequestMapping("/myInfoToUpd")
+	public ModelAndView myInfoToUpd(
+			HttpSession session,
+			ModelAndView mv)throws Exception{
+		User user = (User)session.getAttribute("user");
+		User myuser = userService.selectByid(user.getId());
+		mv.addObject("myuser", myuser);
+		mv.setViewName("user/myInfoUpd");
+		return mv;
+	}
 	
-	
+	@RequestMapping("/myInfoUpd")
+	public ModelAndView myInfoUpd(
+			User user,
+			ModelAndView mv)throws Exception{
+		userService.update(user);		
+		mv.setViewName("redirect:/user/myInfo.action");
+		return mv;
+	}
 
 }

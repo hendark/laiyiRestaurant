@@ -31,4 +31,14 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	public void insert(User user) throws Exception {
+		
+		userMapper.insert(user);
+	}
+
+	public void update(User user) throws Exception {
+		
+		userMapper.updateByPrimaryKey(user);
+	}
+
 }

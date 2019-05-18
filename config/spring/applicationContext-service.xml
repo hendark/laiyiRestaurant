@@ -20,4 +20,6 @@
 	<bean id="DetailsService" class="com.zy.service.impl.DetailsServiceImpl"/>
 	<bean id="CuisineService" class="com.zy.service.impl.CuisineServiceImpl"/>
 	<bean id="CartService" class="com.zy.service.impl.CartServiceImpl"/>
+	<bean id="TableService" class="com.zy.service.impl.TableServiceImpl"/>
+	
 </beans>

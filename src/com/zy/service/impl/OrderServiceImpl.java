@@ -44,13 +44,13 @@ public class OrderServiceImpl implements OrderService{
 
 	
 	public void delete(int id) throws Exception {
-		// TODO Auto-generated method stub
 		
+		orderMapper.deleteByPrimaryKey(id);
 	}
 
 	public void insert(Order order) throws Exception {
-		// TODO Auto-generated method stub
 		
+		orderMapper.insert(order);
 	}
 
 	/**
@@ -67,6 +67,35 @@ public class OrderServiceImpl implements OrderService{
 	public void update(Order order) throws Exception {
 		
 		orderMapper.updateByPrimaryKey(order);
+	}
+
+	public List<Order> selectOrderByUserId(int id) throws Exception {
+		OrderExample oe = new OrderExample();
+		OrderExample.Criteria criteria = oe.createCriteria();
+		criteria.andUseridEqualTo(id);
+		List<Order> orders = orderMapper.selectByExample(oe);
+		if(orders.size()==0){
+			return null;
+		}else{
+			return orders;
+			
+		}
+	}
+
+	public List<Order> selectOrderByUserIdAndState(int userid, int state)
+			throws Exception {
+		OrderExample oe = new OrderExample();
+		OrderExample.Criteria criteria = oe.createCriteria();
+		criteria.andUseridEqualTo(userid);
+		criteria.andStateEqualTo(state);
+		List<Order> orders = orderMapper.selectByExample(oe);
+		if(orders.size()==0){
+			return null;
+		}else{
+			return orders;
+			
+		}
+		
 	}
 
 }

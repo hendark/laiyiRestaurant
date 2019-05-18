@@ -2,6 +2,8 @@ package com.zy.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import com.zy.po.Details;
 import com.zy.po.DetailsFood;
 import com.zy.po.Order;
 import com.zy.po.OrderUser;
+import com.zy.po.User;
 import com.zy.service.DetailsService;
 import com.zy.service.OrderService;
 
@@ -85,4 +88,24 @@ public class OrderController {
 		return mv;
 	}
 	
+	@RequestMapping("/userMyOrder")
+	public ModelAndView userMyOrder(
+			HttpSession session,
+			ModelAndView mv)throws Exception{
+		User user = (User)session.getAttribute("user");
+		List<Order> orders = orderService.selectOrderByUserId(user.getId());
+		mv.addObject("orders", orders);
+		mv.setViewName("user/myOrder");
+		return mv;
+	}
+	
+	@RequestMapping("/userOrderDetails")
+	public ModelAndView userOrderDetails(
+			@RequestParam("id") int id,
+			ModelAndView mv)throws Exception{
+		List<DetailsFood> detailsFoods = detailsService.selectAllByOrderId(id);
+		mv.addObject("detailsFoods", detailsFoods);
+		mv.setViewName("user/orderDetails");
+		return mv;
+	}
 }

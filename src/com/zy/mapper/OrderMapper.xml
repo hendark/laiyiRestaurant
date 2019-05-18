@@ -103,7 +103,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zy.po.Order" >
-    insert into order (id, userid, tableid, 
+    insert into `order` (id, userid, tableid, 
       ordertime, state, price, 
       cookno, waiterno)
     values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{tableid,jdbcType=INTEGER}, 
@@ -111,7 +111,7 @@
       #{cookno,jdbcType=VARCHAR}, #{waiterno,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zy.po.Order" >
-    insert into order
+    insert into `order`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -166,7 +166,7 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.zy.po.OrderExample" resultType="java.lang.Integer" >
-    select count(*) from order
+    select count(*) from `order`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -218,7 +218,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.zy.po.Order" >
-    update order
+    update `order`
     <set >
       <if test="userid != null" >
         userid = #{userid,jdbcType=INTEGER},
@@ -245,7 +245,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zy.po.Order" >
-    update order
+    update `order`
     set userid = #{userid,jdbcType=INTEGER},
       tableid = #{tableid,jdbcType=INTEGER},
       ordertime = #{ordertime,jdbcType=TIMESTAMP},

@@ -13,4 +13,6 @@ public interface OrderService {
 	public void update(Order order) throws Exception;
 	public void delete(int id) throws Exception;
 	public Order selectById(int id) throws Exception;
+	public List<Order> selectOrderByUserId(int id) throws Exception;
+	public List<Order> selectOrderByUserIdAndState(int userid,int state)throws Exception;
 }

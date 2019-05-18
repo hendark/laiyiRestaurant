@@ -12,4 +12,6 @@
 		FROM food,`user`,evaluation
  		WHERE evaluation.foodid=food.id AND evaluation.userid=`user`.id AND food.id = #{id,jdbcType=INTEGER}
 	</select>
+	
+	
 </mapper>

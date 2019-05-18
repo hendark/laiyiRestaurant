@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<title>购物车页面</title>
+	<title>我的订单</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/base.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_common.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_manager.css" type="text/css" />
@@ -17,6 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_list.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_goods.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_gouwuche.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_form.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/topNav.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/shop_goods.js" ></script>
@@ -102,88 +103,96 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul class="shop_hd_menu_nav">
 				<li class="link"><a href="${pageContext.request.contextPath}/food/toindex.action"><span>首页</span></a></li>			
 				<li class="link"><a href="${pageContext.request.contextPath}/table/tableList.action"><span>预订餐桌</span></a></li>
-				<li class="current_link"><a href="#"><span>我的购物车</span></a></li>
-				<li class="link"><a href="${pageContext.request.contextPath}/user/myInfo.action"><span>个人中心</span></a></li>
+				<li class="link"><a href="${pageContext.request.contextPath}/cart/tomyCart.action"><span>我的购物车</span></a></li>
+				<li class="current_link"><a href="${pageContext.request.contextPath}/user/myInfo.action"><span>个人中心</span></a></li>
 			</ul>
 			<!-- 普通导航菜单 End -->
 		</div>
 		<!-- Header Menu End -->
-
 	</div>
 	<div class="clear"></div>
+	
 	<!-- 面包屑 注意首页没有 -->
 	<div class="shop_hd_breadcrumb">
 		<strong>当前位置：</strong>
 		<span>
-			<a href="#">我的购物车</a>&nbsp;›&nbsp;
-			<a href="#">购物车详情</a>&nbsp;›&nbsp;
+			<a href="">个人中心</a>&nbsp;›&nbsp;
+			<a href="">我的交易</a>&nbsp;›&nbsp;
+			<a href="">我的订单</a>
 		</span>
 	</div>
+	
 	<div class="clear"></div>
-	<!-- Header End -->
-	 
-	 <!-- 购物车 Body -->
-	<div class="shop_gwc_bd clearfix">
-		<!-- 在具体实现的时候，根据情况选择其中一种情况 -->
-		<!-- 购物车为空 -->
-		<c:choose>
-			<c:when test="${myCartFood==null}">
-				<div class="empty_cart mb10">
-					<div class="message">
-						<p>购物车内暂时没有商品，您可以<a href="${pageContext.request.contextPath}/food/toindex.action">去首页</a>挑选喜欢的商品</p>
-					</div>
-				</div>
-			</c:when>
-			<c:otherwise>
-		<!-- 购物车为空 end-->
-		
-		<!-- 购物车有商品 -->
-		<div class="shop_gwc_bd_contents clearfix">
+	<!-- 我的个人中心 -->
+	<div class="shop_member_bd clearfix">
+		<!-- 左边导航 -->
+		<div class="shop_member_bd_left clearfix">
 			
-			<!-- 购物车列表 -->
+			<div class="shop_member_bd_left_pic">
+				<a href="javascript:void(0);"><img src="${pageContext.request.contextPath}/userjs/images/tuxiang.jpg" /></a>
+			</div>
+			<div class="clear"></div>
+
+			<dl>
+				<dt>我的账户</dt>
+				<dd><span><a href="${pageContext.request.contextPath}/user/myInfo.action">个人资料</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/myInfoToUpd.action">完善个人资料</a></span></dd>
+			</dl>
+			
+			<dl>
+				<dt>我的交易</dt>
+				<dd><span><a href="${pageContext.request.contextPath}/order/userMyOrder.action">我的订单</a></span></dd>
+				<dd><span><a href="">评价管理</a></span></dd>
+			</dl>
+
+
+		</div>
+		<!-- 左边导航 End -->
+		
+		<!-- 右边购物列表 -->
+		<div class="shop_member_bd_right clearfix">
+			
+			<div class="shop_meber_bd_good_lists clearfix">
+				<div class="title"><h3>订单列表</h3></div>
 				<table>
-					<thead>
-						<tr>
-							<th colspan="2"><span>商品</span></th>
-							<th><span>单价(元)</span></th>
-							<th><span>数量</span></th>
-							<th><span>小计</span></th>
-							<th><span>操作</span></th>
-						</tr>
+					<thead class="tab_title">
+						<th style="width:80px;"><span>商品信息</span></th>
+						<th style="width:80px;"><span>餐桌号</span></th>
+						<th style="width:100px;"><span>时间</span></th>
+						<th style="width:100px;"><span>订单总价</span></th>
+						<th style="width:115px;"><span>状态与操作</span></th>
 					</thead>
 					<tbody>
-						<c:forEach items="${myCartFood}" var="m">
-							<tr>
-								<td class="gwc_list_pic"><a href=""><img width="50px" height="60px"  src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></td>
-								<td class="gwc_list_title"><a href="">${m.fname} </a></td>
-								<td class="gwc_list_danjia"><span>￥<strong id="danjia_001">${m.fdprice}</strong></span></td>
-								<td class="gwc_list_shuliang"><span><a class="good_num_jian this_good_nums" did="${m.id}" xid="${m.id}" ty="-" valId="${m.id}" href="javascript:void(0);">-</a><input type="text" value="${m.num}" id="${m.id}" class="good_nums" /><a href="javascript:void(0);" did="${m.id}" xid="${m.id}" ty="+" class="good_num_jia this_good_nums" valId="${m.id}">+</a></span></td>
-								<td class="gwc_list_xiaoji"><span>￥<strong id="xiaoji_001" class="good_xiaojis">${m.xiaoji}</strong></span></td>
-								<td class="gwc_list_caozuo"><a href="javascript:void(0);" class="shop_good_delete">删除</a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-					<tfoot>
-						<tr>
-							<td colspan="6">
-								<div class="gwc_foot_zongjia">商品总价<span>￥<strong id="good_zongjia">${zongji}</strong></span></div>
-								<div class="clear"></div>
-								<div class="gwc_foot_links">
-									<a href="${pageContext.request.contextPath}/food/toindex.action" class="go">继续购物</a>
-									<a href="toTableAndCart.action" class="op">确认并填写订单</a>
-								</div>
-							</td>
-						</tr>
-					</tfoot>
-				</table>
-			</c:otherwise>
-		</c:choose>
-		<!-- 购物车列表 End -->
-		</div>
-		<!-- 购物车有商品 end -->
 
+						<tr><td colspan="5">
+						
+							<c:forEach items="${orders}" var="o">
+							<table class="good">
+								<thead >
+									<tr><th colspan="6">
+										<span><strong>订单号码：</strong>zy2019356${o.id }</span>
+									</th></tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/userjs/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
+										<td class="dingdan_shuliang">${o.tableid }</td>
+										<td class="dingdan_shuliang">${o.ordertime }</td>
+										<td class="dingdan_zongjia">￥<strong>${o.price }</strong></td>
+										<td class="digndan_caozuo"><a href="userOrderDetails.action?id=${o.id }">查看订单详情</a></td>
+									</tr>
+								</tbody>
+							</table>
+							</c:forEach>
+						</td></tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 右边购物列表 End -->
+		
 	</div>
-	<!-- 购物车 Body End -->         
+	<!-- 我的个人中心 End -->     
  
 	<div class="clear"></div>
 	<div class="shop_footer">

@@ -9,5 +9,5 @@ public interface DetailsService {
 	public List<DetailsFood> selectAllByOrderId(int id)throws Exception;
 	public void update(Details details)throws Exception;
 	public Details selectById(int id)throws Exception;
-	
+	public void insert(Details details)throws Exception;
 }

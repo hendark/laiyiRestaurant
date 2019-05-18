@@ -98,10 +98,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- 所有商品菜单 END -->
 			<!-- 普通导航菜单 -->
 			<ul class="shop_hd_menu_nav">
-				<li class="current_link"><a href=""><span>首页</span></a></li>			
-				<li class="link"><a href=""><span>我的订单</span></a></li>
+				<li class="current_link"><a href="#"><span>首页</span></a></li>			
+				<li class="link"><a href="${pageContext.request.contextPath}/table/tableList.action"><span>预订餐桌</span></a></li>
 				<li class="link"><a href="${pageContext.request.contextPath}/cart/tomyCart.action"><span>我的购物车</span></a></li>
-				<li class="link"><a href=""><span>个人中心</span></a></li>
+				<li class="link"><a href="${pageContext.request.contextPath}/user/myInfo.action"><span>个人中心</span></a></li>
 			</ul>
 			<!-- 普通导航菜单 End -->
 		</div>

@@ -31,4 +31,9 @@ public class DetailsServiceImpl implements DetailsService{
 		detailsMapper.updateByPrimaryKey(details);
 	}
 
+	public void insert(Details details) throws Exception {
+		
+		detailsMapper.insert(details);
+	}
+
 }

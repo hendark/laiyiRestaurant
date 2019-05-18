@@ -9,16 +9,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<title>商品详细页面</title>
+	<title>购物车页面</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/base.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_common.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_manager.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_header.css" type="text/css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_list.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_goods.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_gouwuche.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_form.css" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/jquery.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/topNav.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/shop_goods.js" ></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/jquery.goodnums.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/shop_gouwuche.js" ></script>
 	<style type="text/css">
 		.font > p {
 			font-size: 40px;
@@ -97,153 +101,64 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- 所有商品菜单 END -->
 			<!-- 普通导航菜单 -->
 			<ul class="shop_hd_menu_nav">
-				<li class="current_link"><a href="${pageContext.request.contextPath}/food/toindex.action"><span>首页</span></a></li>			
+				<li class="link"><a href="${pageContext.request.contextPath}/food/toindex.action"><span>首页</span></a></li>			
 				<li class="link"><a href="${pageContext.request.contextPath}/table/tableList.action"><span>预订餐桌</span></a></li>
 				<li class="link"><a href="${pageContext.request.contextPath}/cart/tomyCart.action"><span>我的购物车</span></a></li>
-				<li class="link"><a href="${pageContext.request.contextPath}/user/myInfo.action"><span>个人中心</span></a></li>
+				<li class="current_link"><a href="${pageContext.request.contextPath}/user/myInfo.action"><span>个人中心</span></a></li>
 			</ul>
 			<!-- 普通导航菜单 End -->
 		</div>
 		<!-- Header Menu End -->
-
 	</div>
 	<div class="clear"></div>
+	
 	<!-- 面包屑 注意首页没有 -->
 	<div class="shop_hd_breadcrumb">
 		<strong>当前位置：</strong>
 		<span>
-			<a href="${pageContext.request.contextPath}/food/toindex.action">首页</a>&nbsp;›&nbsp;
-			<a href="#">商品详情页</a>&nbsp;›&nbsp;
+			<a href="">个人中心</a>&nbsp;›&nbsp;
+			<a href="">我的交易</a>&nbsp;›&nbsp;
+			<a href="">我的订单</a>
 		</span>
 	</div>
+	
 	<div class="clear"></div>
-	<!-- Header End -->
-	          
-   	<!-- Goods Body -->
-	<div class="shop_goods_bd clear">
-
-		<!-- 商品展示 -->
-		<div class="shop_goods_show">
-			<div class="shop_goods_show_left">
-				<!-- 京东商品展示 -->
-				<link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/shop_goodPic.css" type="text/css" />
-				<script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/shop_goodPic_base.js"></script>
-				<script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/lib.js"></script>
-				<script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/163css.js"></script>
-				<div id="preview">
-					<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="350" src="${pageContext.request.contextPath}/userjs/images/img02.jpg" jqimg="${pageContext.request.contextPath}/userjs/images/img02.jpg" width="350">
-						</div>
-						<div id="spec-n5">
-							<div class=control id="spec-left">
-								<img src="${pageContext.request.contextPath}/userjs/images/left.gif" />
-							</div>
-							<div id="spec-list">
-								<ul class="list-h">
-									<li><img src="${pageContext.request.contextPath}/userjs/images/img01.jpg"> </li>
-									<li><img src="${pageContext.request.contextPath}/userjs/images/img02.jpg"> </li>
-									<li><img src="${pageContext.request.contextPath}/userjs/images/img03.jpg"> </li>
-									<li><img src="${pageContext.request.contextPath}/userjs/images/img01.jpg"> </li>
-									<li><img src="${pageContext.request.contextPath}/userjs/images/img02.jpg"> </li>
-									<li><img src="${pageContext.request.contextPath}/userjs/images/img03.jpg"> </li>
-									<li><img src="${pageContext.request.contextPath}/userjs/images/img01.jpg"> </li>
-									<li><img src="${pageContext.request.contextPath}/userjs/images/img02.jpg"> </li>
-									<li><img src="${pageContext.request.contextPath}/userjs/images/img03.jpg"> </li>
-								</ul>
-							</div>
-							<div class=control id="spec-right">
-								<img src="${pageContext.request.contextPath}/userjs/images/right.gif" />
-							</div>
-							
-					    </div>
-					</div>
-
-					<SCRIPT type=text/javascript>
-						$(function(){			
-						   $(".jqzoom").jqueryzoom({
-								xzoom:400,
-								yzoom:400,
-								offset:10,
-								position:"right",
-								preload:1,
-								lens:1
-							});
-							$("#spec-list").jdMarquee({
-								deriction:"left",
-								width:350,
-								height:56,
-								step:2,
-								speed:4,
-								delay:10,
-								control:true,
-								_front:"#spec-right",
-								_back:"#spec-left"
-							});
-							$("#spec-list img").bind("mouseover",function(){
-								var src=$(this).attr("src");
-								$("#spec-n1 img").eq(0).attr({
-									src:src.replace("\/n5\/","\/n1\/"),
-									jqimg:src.replace("\/n5\/","\/n0\/")
-								});
-								$(this).css({
-									"border":"2px solid #ff6600",
-									"padding":"1px"
-								});
-							}).bind("mouseout",function(){
-								$(this).css({
-									"border":"1px solid #ccc",
-									"padding":"2px"
-								});
-							});				
-						})
-						</SCRIPT>
-					<!-- 来怡饭店商品详情展示 End -->
-
+	<!-- 我的个人中心 -->
+	<div class="shop_member_bd clearfix">
+		<!-- 左边导航 -->
+		<div class="shop_member_bd_left clearfix">
+			
+			<div class="shop_member_bd_left_pic">
+				<a href="javascript:void(0);"><img src="${pageContext.request.contextPath}/userjs/images/tuxiang.jpg" /></a>
 			</div>
-			<div class="shop_goods_show_right">
-				<ul>
-					<li>
-						<strong style="font-size:14px; font-weight:bold;">${food.fname}</strong>
-					</li>
-					<li>
-						<label>原价：</label>
-						<span><del>${food.fprice}</del>元</span>
-					</li>
-					<li>
-						<label>折扣价：</label>
-						<span><strong>${food.fdprice}</strong>元</span>
-					</li>
-					<li>
-						<label>库存是否充足：</label>
-						<span>${food.fstate==1?"充足":"无材料"}</span>
-					</li>
-					<li>
-						<label>是否特色菜：</label>
-						<span>${food.fischara==1?"特色菜":"否"}</span>
-					</li>
-					<li class="goods_num">
-						<label>购买数量：</label>
-						<span><a class="good_num_jian" id="good_num_jian" href="javascript:void(0);"></a><input type="text" value="1" id="good_nums" class="good_nums" /><a href="javascript:void(0);" id="good_num_jia" class="good_num_jia"></a></span>
-					</li>
-					<li style="padding:20px 0;">
-						<label>&nbsp;</label>
-						<span><a href="" class="goods_sub goods_sub_gou" >加入购物车</a></span>
-					</li>
-				</ul>
-			</div>
+			<div class="clear"></div>
+
+			<dl>
+				<dt>我的账户</dt>
+				<dd><span><a href="${pageContext.request.contextPath}/user/myInfo.action">个人资料</a></span></dd>
+				<dd><span><a href="${pageContext.request.contextPath}/user/myInfoToUpd.action">完善个人资料</a></span></dd>
+			</dl>
+			
+			<dl>
+				<dt>我的交易</dt>
+				<dd><span><a href="${pageContext.request.contextPath}/order/userMyOrder.action">我的订单</a></span></dd>
+				<dd><span><a href="">评价管理</a></span></dd>
+			</dl>
+
+
 		</div>
-		<!-- 商品展示 End -->
-        
-        <!-- 右边购物列表 -->
+		<!-- 左边导航 End -->
+		
+		<!-- 右边购物列表 -->
 		<div class="shop_member_bd_right clearfix">
 			
 			<div class="shop_meber_bd_good_lists clearfix">
-				<div class="title"><h3>评价列表</h3></div>
+				<div class="title"><h3>订单列表</h3></div>
 				<table>
 					<thead class="tab_title">
 						<th style="width:20px;"><span>&nbsp;</span></th>
-						<th style="width:400px;"><span>评价内容</span></th>
-						<th style="width:270px;"><span>评价人</span></th>
-						<th style="width:130px;"><span>宝贝信息</span></th>
+						<th style="width:600px;"><span>评价内容</span></th>
+						<th style="width:200px;"><span>操作</span></th>
 					</thead>
 					<tbody>
 						<c:forEach items="${evaluations}" var="e">
@@ -251,17 +166,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<table class="good" style="height:50px">
 									<tbody>
 										<tr>
-											<td class="pingjia_pic"><span class="pingjia_type pingjia_type_1"></span></td>
 											<c:choose>
 												<c:when test="${e.score==5}">
-													<td class="pingjia_title"><span> 好评！</span></td>
+													<td class="pingjia_pic"><span class="pingjia_type pingjia_type_1"></span></td>
 												</c:when>
 												<c:otherwise>
-													<td class="pingjia_title"><span> 差评！</span></td>
+													<td class="pingjia_pic"><span class="pingjia_type pingjia_type_1"></span></td>
 												</c:otherwise>
 											</c:choose>
-											<td class="pingjia_danjia"><strong>${e.username}</strong></td>
-											<td class="pingjia_shuliang">${e.fname}<br/>${e.fdprice}元</td>
+											<td class="pingjia_title"><span>${e.info }</span></td>
+											<td class="digndan_caozuo"><a href="delEvaluation.action?id=${e.id }">删除</a></td>
 										</tr>
 									</tbody>
 								</table>
@@ -272,7 +186,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<!-- 右边购物列表 End -->                                
-                                   
+		
+	</div>
+	<!-- 我的个人中心 End -->     
+ 
 	<div class="clear"></div>
 	<div class="shop_footer">
             <div class="shop_footer_link">

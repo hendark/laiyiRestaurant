@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -8,16 +10,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<title>用户登录</title>
+	<title>用户注册</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/base.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/global.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/userjs/css/login-register.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/jquery-1.8.3.js"></script>
 	<style type="text/css">
 		.font > p {
 			font-size: 40px;
 			text-shadow: 5px 5px 5px black, 0px 0px 2px red, 2px 2px 3px green;
 		}
 	</style>
+	<script type="text/javascript">
+		 $(function(){
+			 $("#btn").click(function(){
+		 		$.get("${pageContext.request.contextPath}/user/register.action",{
+					username:$("#username").val(),	
+					password:$("#password").val(),
+					surepassword:$("#surepassword").val()	
+				},function(data){
+					$("#pswinfo").html(data);
+				});
+		 	});	 
+		 });
+	</script>
 </head>
 <body>
 	<div class="header wrap1000 font">
@@ -27,27 +43,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="main">
 		<div class="login-form fr">
 			<div class="form-hd">
-				<h3>用户登录</h3>
+				<h3>用户注册</h3>
 			</div>
 			<div class="form-bd">
-				<form action="${pageContext.request.contextPath}/user/login.action" method="POST">
 					<dl>
 						<dt>用户名</dt>
-						<dd><input type="text" name="username" class="text" /></dd>
+						<dd><input type="text" id="username" name="username" class="text" /></dd>
 					</dl>
 					<dl>
 						<dt>密&nbsp;&nbsp;&nbsp;&nbsp;码</dt>
-						<dd><input type="password" name="password" class="text"/></dd>
+						<dd><input type="password" id="password" name="password" class="text"/></dd>
+					</dl>
+					<dl>
+						<dt>确认密码</dt>
+						<dd><input type="password" id="surepassword" name="surepassword" class="text"/><span id="pswinfo" style="color: red"></span></dd>
 					</dl>
 					<dl>
 						<dt>&nbsp;</dt>
-						<dd><input type="submit" value="登  录" class="submit"/> </dd>
+						<dd><input type="submit" id="btn" value="立即注册" class="submit"/> </dd>
 					</dl>
-				</form>
-				<dl>
-					<dt>&nbsp;</dt>
-					<dd> 还不是本站会员？立即 <a href="${pageContext.request.contextPath}/user/toregister.action" class="register">注册</a></dd>
-				</dl>
 			</div>
 			<div class="form-ft">
 			

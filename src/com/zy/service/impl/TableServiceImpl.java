@@ -37,4 +37,9 @@ public class TableServiceImpl implements TableService{
 		tableMapper.updateByPrimaryKey(table);
 	}
 
+	public Table selectById(int id) throws Exception {
+		
+		return tableMapper.selectByPrimaryKey(id);
+	}
+
 }

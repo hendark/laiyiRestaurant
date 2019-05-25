@@ -9,6 +9,7 @@ import com.zy.mapper.FoodMapper;
 import com.zy.mapper.FoodMapperCuisine;
 import com.zy.po.Food;
 import com.zy.po.FoodCuisine;
+import com.zy.po.FoodExample;
 import com.zy.service.FoodService;
 
 @Service("FoodService")
@@ -41,6 +42,30 @@ public class FoodServiceImpl implements FoodService{
 	public void update(Food food) throws Exception {
 		
 		foodMapper.updateByPrimaryKey(food);
+	}
+
+	public List<Food> selectByFname(String fname) throws Exception {
+		FoodExample fe = new FoodExample();
+		FoodExample.Criteria criteria = fe.createCriteria();
+		criteria.andFnameLike("%"+fname+"%");
+		List<Food> foods = foodMapper.selectByExample(fe);	
+		if(foods.size()==0){
+			return null;
+		}else{
+			return foods;
+		}
+	}
+
+	public List<Food> selectByCuisine(int cuisineId) throws Exception {
+		FoodExample fe = new FoodExample();
+		FoodExample.Criteria criteria = fe.createCriteria();
+		criteria.andCategoryidEqualTo(cuisineId);
+		List<Food> foods = foodMapper.selectByExample(fe);	
+		if(foods.size()==0){
+			return null;
+		}else{
+			return foods;
+		}
 	}
 
 }

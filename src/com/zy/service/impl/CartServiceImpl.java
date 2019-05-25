@@ -9,6 +9,7 @@ import com.zy.mapper.CartMapperFood;
 import com.zy.po.Cart;
 import com.zy.po.CartExample;
 import com.zy.po.CartFood;
+import com.zy.po.Food;
 import com.zy.service.CartService;
 
 public class CartServiceImpl implements CartService{
@@ -55,6 +56,25 @@ public class CartServiceImpl implements CartService{
 		}else{
 			return myCartFood;
 		}
+	}
+
+	public Cart selectByUserIdAndFoodId(int userid, int foodid)
+			throws Exception {
+		CartExample ce = new CartExample();
+		CartExample.Criteria Criteria= ce.createCriteria();
+		Criteria.andUseridEqualTo(userid);
+		Criteria.andFoodidEqualTo(foodid);
+		List<Cart> carts = cartMapper.selectByExample(ce);
+		if(carts.size()==0){
+			return null;
+		}else{
+			return carts.get(0);
+		}
+	}
+
+	public Cart selectById(int id) throws Exception {
+		
+		return cartMapper.selectByPrimaryKey(id);
 	}
 
 }

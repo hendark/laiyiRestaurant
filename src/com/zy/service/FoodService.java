@@ -12,4 +12,6 @@ public interface FoodService {
 	public void delete(int id) throws Exception;
 	public Food selectById(int id) throws Exception;
 	public List<FoodCuisine> selectAll() throws Exception;
+	public List<Food> selectByFname(String fname)throws Exception;
+	public List<Food> selectByCuisine(int cuisineId)throws Exception;
 }

@@ -64,14 +64,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="shop_hd_header_search">
                 <ul class="shop_hd_header_search_tab">
-			        <li id="search" class="current">商品</li>
-			        <li id="shop_search">店铺</li>
+			         <li id="search" class="current">商品</li>
 			    </ul>
-                            <div class="clear"></div>
+                <div class="clear"></div>
 			    <div class="search_form">
-			    	<form method="post" action="index.php">
+			    	<form method="post" action="${pageContext.request.contextPath}/food/findByFname.action">
 			    		<div class="search_formstyle">
-			    			<input type="text" class="search_form_text" name="search_content" value="搜索其实很简单！" />
+			    			<input type="text" class="search_form_text" name="searchContent"  />
 			    			<input type="submit" class="search_form_sub" name="secrch_submit" value="" title="搜索" />
 			    		</div>
 			    	</form>
@@ -92,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- 单个菜单项 -->
 						<c:forEach items="${sessionScope.cuisines}" var="c">
 							<li id="cat_1" class="">
-								<h3><a href="#">${c.cuisine}</a></h3>
+								<h3><a href="${pageContext.request.contextPath}/food/findByCuisine.action?id=${c.id}">${c.cuisine}</a></h3>
 	                        </li>
                         </c:forEach>
 					</ul>
@@ -142,7 +141,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<dl>
 				<dt>我的交易</dt>
 				<dd><span><a href="${pageContext.request.contextPath}/order/userMyOrder.action">我的订单</a></span></dd>
-				<dd><span><a href="">评价管理</a></span></dd>
 			</dl>
 
 
@@ -175,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</thead>
 								<tbody>
 									<tr>
-										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/userjs/images/1dbc94fa0d60cba3990b89ccb01f82c2.jpg_tiny.jpg" /></td>
+										<td class="dingdan_pic"><img src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></td>
 										<td class="dingdan_shuliang">${o.tableid }</td>
 										<td class="dingdan_shuliang">${o.ordertime }</td>
 										<td class="dingdan_zongjia">￥<strong>${o.price }</strong></td>

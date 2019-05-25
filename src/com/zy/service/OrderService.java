@@ -9,6 +9,8 @@ import com.zy.po.OrderUser;
 public interface OrderService {
 	public List<OrderUser> selectOrder() throws Exception;
 	public List<Order> selectMyOrder(String workno) throws Exception;
+	public List<Order> selectByState(int state)throws Exception;
+	public List<Order> selectByState23(int state1,int state2)throws Exception;
 	public void insert(Order order) throws Exception;
 	public void update(Order order) throws Exception;
 	public void delete(int id) throws Exception;

@@ -14,9 +14,11 @@ import com.zy.po.Details;
 import com.zy.po.DetailsFood;
 import com.zy.po.Order;
 import com.zy.po.OrderUser;
+import com.zy.po.Table;
 import com.zy.po.User;
 import com.zy.service.DetailsService;
 import com.zy.service.OrderService;
+import com.zy.service.TableService;
 
 @Controller
 @RequestMapping("/order")
@@ -25,6 +27,8 @@ public class OrderController {
 	private OrderService orderService;
 	@Autowired
 	private DetailsService detailsService;
+	@Autowired
+	private TableService tableService;
 
 	@RequestMapping("/cookorder")
 	public ModelAndView cookorder(
@@ -81,10 +85,10 @@ public class OrderController {
 			@RequestParam("id") int id,
 			ModelAndView mv)throws Exception{
 		Details details = detailsService.selectById(id);
-		details.setPrice(2.0);
+		details.setPrice(2.00);
 		int orderid = details.getOrderid();
 		detailsService.update(details);
-		mv.setViewName("redirect:/order/orderDetails.action?id=2");
+		mv.setViewName("redirect:/order/orderDetails.action?id="+orderid);
 		return mv;
 	}
 	
@@ -106,6 +110,72 @@ public class OrderController {
 		List<DetailsFood> detailsFoods = detailsService.selectAllByOrderId(id);
 		mv.addObject("detailsFoods", detailsFoods);
 		mv.setViewName("user/orderDetails");
+		return mv;
+	}
+	
+	@RequestMapping("/waiterLookOrder")
+	public ModelAndView waiterLookOrder(
+			ModelAndView mv)throws Exception{
+		List<Order> orders = orderService.selectByState(2);
+		mv.addObject("orders", orders);
+		mv.setViewName("employees/waiterLookOrder");
+		return mv;
+	}
+	
+	@RequestMapping("/waiterOrderDetails")
+	public ModelAndView waiterOrderDetails(
+			@RequestParam("id") int id,
+			ModelAndView mv)throws Exception{
+		List<DetailsFood> detailsFoods = detailsService.selectAllByOrderId(id);
+		mv.addObject("detailsFoods", detailsFoods);
+		mv.setViewName("employees/shangCai");
+		return mv;
+	}
+	
+	@RequestMapping("/shangCaiUpd")
+	public ModelAndView shangCaiUpd(
+			@RequestParam("id") int id,
+			ModelAndView mv)throws Exception{
+		Details details = detailsService.selectById(id);
+		details.setPrice(3.00);
+		int orderid = details.getOrderid();
+		detailsService.update(details);
+		mv.setViewName("redirect:/order/waiterOrderDetails.action?id="+orderid);
+		return mv;
+	}
+	
+	@RequestMapping("/waiterLookOrderByState23")
+	public ModelAndView waiterLookOrderByState23(
+			ModelAndView mv)throws Exception{
+		List<Order> orders = orderService.selectByState23(2, 3);
+		mv.addObject("orders", orders);
+		mv.setViewName("employees/waiterLookOrderByState23");
+		return mv;
+	}
+	
+	@RequestMapping("/dasao")
+	public ModelAndView dasao(
+			@RequestParam("id") int id,
+			@RequestParam("tableid") int tableid,
+			ModelAndView mv)throws Exception{
+		Order order = orderService.selectById(id);
+		order.setState(4);
+		orderService.update(order);
+		Table table = tableService.selectById(tableid);
+		table.setState(1);
+		tableService.update(table);
+		mv.setViewName("redirect:/order/waiterLookOrderByState23.action");
+		return mv;
+	}
+	
+	@RequestMapping("/jiezhang")
+	public ModelAndView jiezhang(
+			@RequestParam("id") int id,
+			ModelAndView mv)throws Exception{
+		Order order = orderService.selectById(id);
+		order.setState(3);
+		orderService.update(order);
+		mv.setViewName("redirect:/order/waiterLookOrder.action");
 		return mv;
 	}
 }

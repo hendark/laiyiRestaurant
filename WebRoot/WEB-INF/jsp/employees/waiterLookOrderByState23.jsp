@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,13 +9,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>来怡饭店员工管理系统</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/adminjs/css/bootstrap.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/adminjs/css/css.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/adminjs/js/jquery1.9.0.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/adminjs/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/adminjs/js/sdmenu.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/adminjs/js/laydate/laydate.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/adminjs/css/jquery.dialog.css">
+	<script src="${pageContext.request.contextPath}/adminjs/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/adminjs/js/jquery.dialog.js"></script>
+	<style type="text/css">
+		#vvv{text-align:right;margin:0;padding:0;}
+	</style>
 </head>
 <body>
     <div class="right" id="mainFrame">
@@ -24,38 +28,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <ul class="breadcrumb">
                	 当前位置：<a href="${pageContext.request.contextPath}/welcome.html">首页</a>
                 <span class="divider">/</span>
-                <a href="#">厨师个人功能</a>
-                <span class="divider">/</span>修改菜品
+                <a href="#">前台服务员个人功能</a>
+                <span class="divider">/</span>打扫管理
             </ul>
             <div class="title_right">
-                <strong>修改菜品</strong>
+                <strong>打扫管理</strong>
+            </div>			
+            <div style="width:99%; margin:auto">
+                <!--表格开始-->
+				<table class="table table-bordered table-striped table-hover">
+					<tbody>
+						<tr align="center">
+							<td>餐桌号</td>
+							<td>订单时间</td>
+							<td>订单状态</td>
+							<td>总价</td>
+							<td style="width: 100px">操作</td>
+         				</tr>
+         			<c:forEach items="${orders}" var="o">
+						<tr align="left">
+							<td>${o.tableid}</td>
+							<td>${o.ordertime}</td>
+							<td>${o.state==2?"就餐中":"未打扫"}</td>
+							<td>￥${o.price}</td>
+							<c:choose>
+								<c:when test="${o.state==2}">
+									<td>
+										<a  href="#" class="btn btn-info" style="width:80px;">打扫完毕</a>							
+									</td>
+								</c:when>
+								<c:otherwise>
+									<td>
+										<a  href="${pageContext.request.contextPath}/order/dasao.action?tableid=${o.tableid}&id=${o.id}" class="btn btn-info" style="width:80px;">打扫完毕</a>							
+									</td>
+								</c:otherwise>
+							</c:choose>
+         				</tr>
+         			</c:forEach>
+					</tbody>
+				</table>
             </div>
-            <form action="orderUpd.action" method="post">
-            <div style="width:900px; margin:auto">
-                <table class="table table-bordered">
-                    <tr>
-                        <td width="12%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">请输入工号：</td>
-	                    <td width="38%"><input type="text" name="cookno" id="input" class="span1-1" /></td>
-	                </tr>  
-                    <input type="hidden" name="id" value="${order.id}"/>  
-                    <input type="hidden" name="userid" value="${order.userid}"/>  
-                    <input type="hidden" name="tableid" value="${order.tableid}"/>  
-                    <input type="hidden" name="ordertime" value="<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${order.ordertime}"/>" />  
-                    <input type="hidden" name="state" value="2"/>  
-                    <input type="hidden" name="price" value="${order.price}"/>    
-                    <input type="hidden" name="waiterno" /> 
-                </table>
-                <table class="margin-bottom-20 table  no-border">
-                    <tr>
-                        <td class="text-center">
-                            <input type="submit" value="确认输入" class="btn btn-info " style="width:80px;"/>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            </form>
         </div>
-    </div><!-- 底部 -->  
+    </div><!-- 底部 -->
     <script>
         !function(){
             laydate.skin('molv');

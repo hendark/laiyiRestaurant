@@ -24,7 +24,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			font-size: 40px;
 			text-shadow: 5px 5px 5px black, 0px 0px 2px red, 2px 2px 3px green;
 		}
+		
 	</style>
+	<script type="text/javascript">
+	   $(document).ready(function(){
+	       //点击链接的时候调用
+	      $("#gouwu").click(function(){
+	 
+	          //得到input的值
+	          var num = $("#good_nums").val();
+	 
+	          //设置linkToCart的href的值
+	          $("#gouwu").attr("href","${pageContext.request.contextPath}/cart/addMyCart.action?id=${food.id}&num="+num);
+	      });
+	    });
+	</script>
 </head>
 <body>
 	<!-- Header  -zy-2019/05/10 -->
@@ -41,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</c:when>
 					<c:otherwise>
 						<div class="shop_hd_topNav_all_left">
-							<p>您好，欢迎来到<b><a href="/">来怡饭店</a></b>[<a href="${pageContext.request.contextPath}/user/userLogin.action">登录</a>][<a href="">注册</a>]</p>
+							<p>您好，欢迎来到<b><a href="/">来怡饭店</a></b>[<a href="${pageContext.request.contextPath}/user/userLogin.action">登录</a>][<a href="${pageContext.request.contextPath}/user/toregister.action">注册</a>]</p>
 						</div>
 					</c:otherwise>	
 				</c:choose>
@@ -60,14 +74,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="shop_hd_header_search">
                 <ul class="shop_hd_header_search_tab">
-			        <li id="search" class="current">商品</li>
-			        <li id="shop_search">店铺</li>
+			         <li id="search" class="current">商品</li>
 			    </ul>
-                            <div class="clear"></div>
+                <div class="clear"></div>
 			    <div class="search_form">
-			    	<form method="post" action="index.php">
+			    	<form method="post" action="${pageContext.request.contextPath}/food/findByFname.action">
 			    		<div class="search_formstyle">
-			    			<input type="text" class="search_form_text" name="search_content" value="搜索其实很简单！" />
+			    			<input type="text" class="search_form_text" name="searchContent"  />
 			    			<input type="submit" class="search_form_sub" name="secrch_submit" value="" title="搜索" />
 			    		</div>
 			    	</form>
@@ -88,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- 单个菜单项 -->
 						<c:forEach items="${sessionScope.cuisines}" var="c">
 							<li id="cat_1" class="">
-								<h3><a href="#">${c.cuisine}</a></h3>
+								<h3><a href="${pageContext.request.contextPath}/food/findByCuisine.action?id=${c.id}">${c.cuisine}</a></h3>
 	                        </li>
                         </c:forEach>
 					</ul>
@@ -226,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</li>
 					<li style="padding:20px 0;">
 						<label>&nbsp;</label>
-						<span><a href="" class="goods_sub goods_sub_gou" >加入购物车</a></span>
+						<span><a href="" id="gouwu" class="goods_sub goods_sub_gou" >加入购物车</a></span>
 					</li>
 				</ul>
 			</div>
@@ -251,15 +264,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<table class="good" style="height:50px">
 									<tbody>
 										<tr>
-											<td class="pingjia_pic"><span class="pingjia_type pingjia_type_1"></span></td>
 											<c:choose>
 												<c:when test="${e.score==5}">
-													<td class="pingjia_title"><span> 好评！</span></td>
+												<td class="pingjia_pic"><span class="pingjia_type pingjia_type_1"></span></td>
 												</c:when>
 												<c:otherwise>
-													<td class="pingjia_title"><span> 差评！</span></td>
+												<td class="pingjia_pic"><span class="pingjia_type pingjia_type_3"></span></td>
 												</c:otherwise>
 											</c:choose>
+											<td class="pingjia_title"><span>${e.info}</span></td>
 											<td class="pingjia_danjia"><strong>${e.username}</strong></td>
 											<td class="pingjia_shuliang">${e.fname}<br/>${e.fdprice}元</td>
 										</tr>

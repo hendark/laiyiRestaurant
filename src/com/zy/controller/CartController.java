@@ -1,13 +1,16 @@
 package com.zy.controller;
 
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zy.po.Cart;
@@ -105,5 +108,69 @@ public class CartController {
 		}
 		mv.setViewName("redirect:/cart/tomyCart.action");
 		return mv;
+	}
+	
+	@RequestMapping("/addMyCart")
+	public ModelAndView addMyCart(
+		@RequestParam("id") int id,
+		@RequestParam("num") int num,
+		HttpSession session,
+		ModelAndView mv)throws Exception{
+		if(session.getAttribute("user")==null){
+			mv.setViewName("user/login");
+		}else{
+		User user = (User)session.getAttribute("user");	
+		if(cartService.selectByUserIdAndFoodId(user.getId(),id)==null){
+			Cart cart = new Cart();
+			cart.setFoodid(id);
+			cart.setNum(num);
+			cart.setUserid(user.getId());
+			cartService.insert(cart);
+		}else{
+			Cart cart = cartService.selectByUserIdAndFoodId(user.getId(),id);
+			cart.setNum(num+cart.getNum());
+			cartService.update(cart);
+		}
+		mv.setViewName("redirect:/cart/tomyCart.action");
+		}
+		return mv;
+	}
+	
+	@RequestMapping("/del")
+	public void del(
+		HttpServletResponse response,
+		@RequestParam("id") int id)throws Exception{
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out=response.getWriter();
+		cartService.del(id);
+		out.println(1);
+	}
+	
+	@RequestMapping("/add")
+	public void add(
+		HttpServletResponse response,
+		@RequestParam("id") int id)throws Exception{
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out=response.getWriter();
+		Cart cart = cartService.selectById(id);
+		cart.setNum(cart.getNum()+1);
+		cartService.update(cart);
+		out.println(1);
+	}
+	
+	@RequestMapping("/jian")
+	public void jian(
+		HttpServletResponse response,
+		@RequestParam("id") int id)throws Exception{
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out=response.getWriter();
+		Cart cart = cartService.selectById(id);
+		if(cart.getNum()==1){
+			out.println(2);
+		}else{
+			cart.setNum(cart.getNum()-1);
+			cartService.update(cart);
+			out.println(1);
+		}
 	}
 }

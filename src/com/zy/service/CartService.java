@@ -12,4 +12,6 @@ public interface CartService {
 	public void update(Cart cart) throws Exception;
 	public void del(int id) throws Exception;
 	public List<CartFood> selectCartFoodByUserId(int id)throws Exception;
+	public Cart selectByUserIdAndFoodId(int userid,int foodid) throws Exception;
+	public Cart selectById(int id)throws Exception;
 }

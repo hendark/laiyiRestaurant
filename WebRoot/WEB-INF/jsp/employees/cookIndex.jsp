@@ -17,10 +17,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="${pageContext.request.contextPath}/adminjs/js/sdmenu.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/adminjs/js/laydate/laydate.js"></script>
 	</head>
+	
 <body>
 <!-- header开始 --> 
 	<div class="header">
-	    <div class="logo"><img src="${pageContext.request.contextPath}/adminjs/img/logo.png" /></div>
 	    <div class="header-right">
 	    	<i class="icon-user icon-white"></i>
 	        <a href="tolist.action?id=${employees.id}">${employees.username}</a>
@@ -52,9 +52,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<c:when test="${employees.type==1}">
 							<div class="collapsed">
 								<span>前台服务员个人功能</span>
-								<a href="#">上菜管理</a>
-								<a href="#">打扫提醒</a>
-								<a href="#">排队叫号</a>
+								<a href="${pageContext.request.contextPath}/order/waiterLookOrder.action" target="mainFrame">上菜管理</a>
+								<a href="${pageContext.request.contextPath}/order/waiterLookOrderByState23.action" target="mainFrame">打扫提醒</a>
+								<a href="#" target="mainFrame">排队叫号</a>
 							</div>
 						</c:when>
 	                    <c:otherwise >

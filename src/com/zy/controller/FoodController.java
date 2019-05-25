@@ -112,4 +112,25 @@ public class FoodController {
 		return mv;
 		
 	}
+	
+	@RequestMapping("/findByFname")
+	public ModelAndView findByFname(
+			String searchContent,
+			ModelAndView mv)throws Exception{
+		List<Food> foods = foodService.selectByFname(searchContent);	
+		mv.addObject("foods", foods);
+		mv.setViewName("user/indexByFname");
+		return mv;
+	}
+	
+
+	@RequestMapping("/findByCuisine")
+	public ModelAndView findByCuisine(
+			@RequestParam("id") int id,
+			ModelAndView mv)throws Exception{
+		List<Food> foods = foodService.selectByCuisine(id);	
+		mv.addObject("foods", foods);
+		mv.setViewName("user/indexByFname");
+		return mv;
+	}
 }

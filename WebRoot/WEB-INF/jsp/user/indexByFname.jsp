@@ -133,28 +133,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </li>
                                 <li>
                                   	<dl>
-                                        <dt><a href="${pageContext.request.contextPath}/food/detail.action?id=2"><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img01.jpg" /></a></dt>
-                                        <dd><a href="${pageContext.request.contextPath}/food/detail.action?id=2">葱烧海参</a></dd>
-                                        <dd> 原价：   <del>68.00</del>元</dd>
-                                        <dd> 折扣价：<em>48.00</em>元</dd>
+                                        <dt><a href=""><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></dt>
+                                        <dd><a href="#">龙虾</a></dd>
+                                        <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
                                 </li>
                                 
                                 <li>
                                     <dl>
-                                        <dt><a href="${pageContext.request.contextPath}/food/detail.action?id=3"><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></dt>
-                                        <dd><a href="${pageContext.request.contextPath}/food/detail.action?id=3">德州扒鸡</a></dd>
-                                        <dd> 原价：   <del>128.00</del>元</dd>
-                                        <dd> 折扣价：<em>98.00</em>元</dd>
+                                        <dt><a href=""><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></dt>
+                                        <dd><a href="#">龙虾</a></dd>
+                                        <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
                                 </li>
                                 
                                 <li>
                                     <dl>
-                                        <dt><a href="${pageContext.request.contextPath}/food/detail.action?id=4"><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img01.jpg" /></a></dt>
-                                        <dd><a href="${pageContext.request.contextPath}/food/detail.action?id=4">清蒸加吉鱼</a></dd>
-                                       	<dd> 原价：   <del>148.00</del>元</dd>
-                                        <dd> 折扣价：<em>88.00</em>元</dd>
+                                        <dt><a href=""><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></dt>
+                                        <dd><a href="#">龙虾</a></dd>
+                                        <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
                                 </li>
                                 
@@ -166,36 +163,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <ul>
                                 <li>
                                     <dl>
-                                        <dt><a href="${pageContext.request.contextPath}/food/detail.action?id=8"><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img01.jpg" /></a></dt>
-                                        <dd><a href="${pageContext.request.contextPath}/food/detail.action?id=8">干烧桂鱼</a></dd>
-                                       	<dd> 原价：   <del>49.00</del>元</dd>
-                                        <dd> 折扣价：<em>32.00</em>元</dd>
+                                        <dt><a href=""><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></dt>
+                                        <dd><a href="#">龙虾</a></dd>
+                                        <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
                                 </li>
                                 <li>
                                     <dl>
-                                        <dt><a href="${pageContext.request.contextPath}/food/detail.action?id=11"><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img01.jpg" /></a></dt>
-                                        <dd><a href="${pageContext.request.contextPath}/food/detail.action?id=11">菠萝咕噜肉</a></dd>
-                                       	<dd> 原价：   <del>68.00</del>元</dd>
-                                        <dd> 折扣价：<em>46.00</em>元</dd>
-                                    </dl>
-                                </li>
-                                
-                                <li>
-                                    <dl>
-                                        <dt><a href="${pageContext.request.contextPath}/food/detail.action?id=12"><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img01.jpg" /></a></dt>
-                                        <dd><a href="${pageContext.request.contextPath}/food/detail.action?id=12">卤猪蹄</a></dd>
-                                       	<dd> 原价：   <del>56.00</del>元</dd>
-                                        <dd> 折扣价：<em>42.00</em>元</dd>
+                                        <dt><a href=""><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></dt>
+                                        <dd><a href="#">龙虾</a></dd>
+                                        <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
                                 </li>
                                 
                                 <li>
                                     <dl>
-                                       <dt><a href="${pageContext.request.contextPath}/food/detail.action?id=15"><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img01.jpg" /></a></dt>
-                                        <dd><a href="${pageContext.request.contextPath}/food/detail.action?id=15">醉排骨</a></dd>
-                                       	<dd> 原价：   <del>98.00</del>元</dd>
-                                        <dd> 折扣价：<em>68.00</em>元</dd>
+                                        <dt><a href=""><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></dt>
+                                        <dd><a href="#">龙虾</a></dd>
+                                        <dd> 商城价：<em>256.00</em>元</dd>
+                                    </dl>
+                                </li>
+                                
+                                <li>
+                                    <dl>
+                                        <dt><a href=""><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></dt>
+                                        <dd><a href="#">龙虾</a></dd>
+                                        <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
                                 </li>
                                 
@@ -205,36 +198,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <ul>
                                 <li>
                                     <dl>
-                                       <dt><a href="${pageContext.request.contextPath}/food/detail.action?id=14"><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img01.jpg" /></a></dt>
-                                        <dd><a href="${pageContext.request.contextPath}/food/detail.action?id=14">佛跳墙</a></dd>
-                                       	<dd> 原价：   <del>199.00</del>元</dd>
-                                        <dd> 折扣价：<em>168.00</em>元</dd>
+                                        <dt><a href=""><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></dt>
+                                        <dd><a href="#">龙虾</a></dd>
+                                        <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
                                 </li>
                                 <li>
                                     <dl>
-                                        <dt><a href="${pageContext.request.contextPath}/food/detail.action?id=19"><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img01.jpg" /></a></dt>
-                                        <dd><a href="${pageContext.request.contextPath}/food/detail.action?id=19">东坡肉</a></dd>
-                                       	<dd> 原价：   <del>68.00</del>元</dd>
-                                        <dd> 折扣价：<em>36.00</em>元</dd>
-                                    </dl>
-                                </li>
-                                
-                                <li>
-                                    <dl>
-                                        <dt><a href="${pageContext.request.contextPath}/food/detail.action?id=20"><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img01.jpg" /></a></dt>
-                                        <dd><a href="${pageContext.request.contextPath}/food/detail.action?id=20">龙井虾仁</a></dd>
-                                       	<dd> 原价：   <del>68.00</del>元</dd>
-                                        <dd> 折扣价：<em>56.00</em>元</dd>
+                                        <dt><a href=""><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></dt>
+                                        <dd><a href="#">龙虾</a></dd>
+                                        <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
                                 </li>
                                 
                                 <li>
                                     <dl>
-                                        <dt><a href="${pageContext.request.contextPath}/food/detail.action?id=22"><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img01.jpg" /></a></dt>
-                                        <dd><a href="${pageContext.request.contextPath}/food/detail.action?id=22">姜母鸭</a></dd>
-                                       	<dd> 原价：   <del>48.00</del>元</dd>
-                                        <dd> 折扣价：<em>32.00</em>元</dd>
+                                        <dt><a href=""><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></dt>
+                                        <dd><a href="#">龙虾</a></dd>
+                                        <dd> 商城价：<em>256.00</em>元</dd>
+                                    </dl>
+                                </li>
+                                
+                                <li>
+                                    <dl>
+                                        <dt><a href=""><img width="160px" height="120px" src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></dt>
+                                        <dd><a href="#">龙虾</a></dd>
+                                        <dd> 商城价：<em>256.00</em>元</dd>
                                     </dl>
                                 </li>
                                 
@@ -257,7 +246,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- 商品列表 -->
 					<div class="shop_bd_list_content clearfix">
 						<ul>
-							<c:forEach items="${sessionScope.foodcuisines}" var="f">
+							<c:forEach items="${foods}" var="f">
 							<li>
 								<dl>
 									<dt><a href="${pageContext.request.contextPath}/food/detail.action?id=${f.id}"><img src="${pageContext.request.contextPath}/userjs/images/img03.jpg" /></a></dt>

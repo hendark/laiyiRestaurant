@@ -22,12 +22,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/shop_goods.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/jquery.goodnums.js" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/shop_gouwuche.js" ></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/userjs/js/jquery-1.8.3.js"></script>
 	<style type="text/css">
 		.font > p {
 			font-size: 40px;
 			text-shadow: 5px 5px 5px black, 0px 0px 2px red, 2px 2px 3px green;
 		}
 	</style>
+<script type="text/javascript">
+		function delet(id){
+			  $.get("${pageContext.request.contextPath}/cart/del.action", {
+				  id: id 
+				  }, function (data) {
+					if(data==1){
+						window.location.reload();
+					}else{
+						alert("删除失败！")}
+					}); 
+			  }
+			 
+		function adds(id){
+			 $.get("${pageContext.request.contextPath}/cart/add.action", {
+				  id: id 
+				  },function(data) {
+					if(data==1){
+						window.location.reload();
+					}else{
+						alert("失败！")}
+					}); 
+		}
+		
+		function jian(id){
+			 $.get("${pageContext.request.contextPath}/cart/jian.action", {
+				  id: id 
+				  },function(data) {
+					if(data==1){
+						window.location.reload();
+					}else{
+						alert("数量不能再减了！")}
+					}); 
+		}
+</script>
 </head>
 <body>
 	<!-- Header  -zy-2019/05/10 -->
@@ -44,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</c:when>
 					<c:otherwise>
 						<div class="shop_hd_topNav_all_left">
-							<p>您好，欢迎来到<b><a href="/">来怡饭店</a></b>[<a href="${pageContext.request.contextPath}/user/userLogin.action">登录</a>][<a href="">注册</a>]</p>
+							<p>您好，欢迎来到<b><a href="/">来怡饭店</a></b>[<a href="${pageContext.request.contextPath}/user/userLogin.action">登录</a>][<a href="${pageContext.request.contextPath}/user/toregister.action">注册</a>]</p>
 						</div>
 					</c:otherwise>	
 				</c:choose>
@@ -63,14 +98,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="shop_hd_header_search">
                 <ul class="shop_hd_header_search_tab">
-			        <li id="search" class="current">商品</li>
-			        <li id="shop_search">店铺</li>
+			         <li id="search" class="current">商品</li>
 			    </ul>
-                            <div class="clear"></div>
+                <div class="clear"></div>
 			    <div class="search_form">
-			    	<form method="post" action="index.php">
+			    	<form method="post" action="${pageContext.request.contextPath}/food/findByFname.action">
 			    		<div class="search_formstyle">
-			    			<input type="text" class="search_form_text" name="search_content" value="搜索其实很简单！" />
+			    			<input type="text" class="search_form_text" name="searchContent"  />
 			    			<input type="submit" class="search_form_sub" name="secrch_submit" value="" title="搜索" />
 			    		</div>
 			    	</form>
@@ -91,7 +125,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- 单个菜单项 -->
 						<c:forEach items="${sessionScope.cuisines}" var="c">
 							<li id="cat_1" class="">
-								<h3><a href="#">${c.cuisine}</a></h3>
+								<h3><a href="${pageContext.request.contextPath}/food/findByCuisine.action?id=${c.id}">${c.cuisine}</a></h3>
 	                        </li>
                         </c:forEach>
 					</ul>
@@ -157,9 +191,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td class="gwc_list_pic"><a href=""><img width="50px" height="60px"  src="${pageContext.request.contextPath}/userjs/images/img02.jpg" /></a></td>
 								<td class="gwc_list_title"><a href="">${m.fname} </a></td>
 								<td class="gwc_list_danjia"><span>￥<strong id="danjia_001">${m.fdprice}</strong></span></td>
-								<td class="gwc_list_shuliang"><span><a class="good_num_jian this_good_nums" did="${m.id}" xid="${m.id}" ty="-" valId="${m.id}" href="javascript:void(0);">-</a><input type="text" value="${m.num}" id="${m.id}" class="good_nums" /><a href="javascript:void(0);" did="${m.id}" xid="${m.id}" ty="+" class="good_num_jia this_good_nums" valId="${m.id}">+</a></span></td>
-								<td class="gwc_list_xiaoji"><span>￥<strong id="xiaoji_001" class="good_xiaojis">${m.xiaoji}</strong></span></td>
-								<td class="gwc_list_caozuo"><a href="javascript:void(0);" class="shop_good_delete">删除</a></td>
+								<td class="gwc_list_shuliang"><span><a onclick="jian(${m.id})" class="good_num_jian this_good_nums"  href="#">-</a>
+								<input type="text" value="${m.num}" id="${m.id}" class="good_nums" />
+								<a onclick="adds(${m.id})" class="good_num_jia this_good_nums"  href="#">+</a></span></td>
+								<td class="gwc_list_xiaoji"><span>￥<strong id="${m.id}" class="good_xiaojis">${m.xiaoji}</strong></span></td>
+								<td class="gwc_list_caozuo"><a  href="#" onclick="delet(${m.id})">删除</a> </td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -202,4 +238,3 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- Footer End -->
 </body>
 </html>
-

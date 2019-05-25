@@ -98,4 +98,30 @@ public class OrderServiceImpl implements OrderService{
 		
 	}
 
+	public List<Order> selectByState(int state) throws Exception {
+		OrderExample oe = new OrderExample();
+		OrderExample.Criteria criteria = oe.createCriteria();
+		criteria.andStateEqualTo(state);
+		List<Order> orders = orderMapper.selectByExample(oe);
+		if(orders.size()==0){
+			return null;
+		}else{
+			return orders;
+			
+		}
+	}
+
+	public List<Order> selectByState23(int state1,int state2) throws Exception {
+		OrderExample oe = new OrderExample();
+		OrderExample.Criteria criteria = oe.createCriteria();
+		criteria.andStateBetween(state1, state2);
+		List<Order> orders = orderMapper.selectByExample(oe);
+		if(orders.size()==0){
+			return null;
+		}else{
+			return orders;
+			
+		}
+	}
+
 }

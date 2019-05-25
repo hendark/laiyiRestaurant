@@ -41,4 +41,16 @@ public class UserServiceImpl implements UserService{
 		userMapper.updateByPrimaryKey(user);
 	}
 
+	public User selectByUsername(String username) throws Exception {
+		UserExample ue = new UserExample();
+		UserExample.Criteria Criteria = ue.createCriteria();
+		Criteria.andUsernameEqualTo(username);
+		List<User> users= userMapper.selectByExample(ue);
+		if(users.size()==0){
+			return null;
+		}else{
+			return users.get(0);
+		}
+	}
+
 }

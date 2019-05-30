@@ -32,7 +32,13 @@ public class CartController {
 	@Autowired
 	private DetailsService detailsService;
 
-	
+	/**
+	 * 购物车页面
+	 * @param session
+	 * @param mv
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/tomyCart")
 	public ModelAndView tomyCart(
 		HttpSession session,
@@ -58,6 +64,13 @@ public class CartController {
 		
 	}
 	
+	/**
+	 * 填写订单
+	 * @param session
+	 * @param mv
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/toTableAndCart")
 	public ModelAndView toTableAndCart(
 		HttpSession session,
@@ -79,6 +92,14 @@ public class CartController {
 		return mv;
 	}
 	
+	/**
+	 * 确认订单
+	 * @param price
+	 * @param session
+	 * @param mv
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/toOrderAndDetails")
 	public ModelAndView toOrderAndDetails(
 		double price,
@@ -110,6 +131,15 @@ public class CartController {
 		return mv;
 	}
 	
+	/**
+	 * 添加到购物车
+	 * @param id
+	 * @param num
+	 * @param session
+	 * @param mv
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/addMyCart")
 	public ModelAndView addMyCart(
 		@RequestParam("id") int id,

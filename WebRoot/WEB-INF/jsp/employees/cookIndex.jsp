@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<span>前台服务员个人功能</span>
 								<a href="${pageContext.request.contextPath}/order/waiterLookOrder.action" target="mainFrame">上菜管理</a>
 								<a href="${pageContext.request.contextPath}/order/waiterLookOrderByState23.action" target="mainFrame">打扫提醒</a>
-								<a href="#" target="mainFrame">排队叫号</a>
+								<a href="${pageContext.request.contextPath}/pdjh/pdjh.action" target="mainFrame">排队叫号</a>
 							</div>
 						</c:when>
 	                    <c:otherwise >

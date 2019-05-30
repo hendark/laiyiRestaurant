@@ -28,6 +28,12 @@ public class FoodController {
 	@Autowired
 	private CuisineService cuisineService;
 	
+	/**
+	 * 菜品列表
+	 * @param mv
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/foodlist")
 	public ModelAndView foodlist(
 			ModelAndView mv) throws Exception {
@@ -37,13 +43,19 @@ public class FoodController {
 		return mv;
 	}
 	
+	
 	@RequestMapping("/tofoodadd")
 	public ModelAndView tofoodadd(
 			ModelAndView mv) throws Exception {
 		mv.setViewName("employees/foodinsert");
 		return mv;
 	}
-			
+	/**
+	 * 添加菜品
+	 * @param mv
+	 * @return
+	 * @throws Exception
+	 */		
 	@RequestMapping("/foodadd")
 	public ModelAndView foodadd(
 			Food food,
@@ -54,7 +66,12 @@ public class FoodController {
 		mv.setViewName("employees/foodlist");
 		return mv;
 	}
-	
+	/**
+	 * 删除菜品
+	 * @param mv
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/fooddel")
 	public ModelAndView fooddel(
 			@RequestParam("id") int id,
@@ -66,6 +83,13 @@ public class FoodController {
 		return mv;
 	}
 	
+	/**
+	 * 前往修改页面
+	 * @param id
+	 * @param mv
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/tofoodupd")
 	public ModelAndView tofoodupd(
 			@RequestParam("id") int id,
@@ -76,6 +100,13 @@ public class FoodController {
 		return mv;
 	}
 	
+	/**
+	 * 菜品修改
+	 * @param food
+	 * @param mv
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/foodupd")
 	public ModelAndView foodupd(
 			Food food,
